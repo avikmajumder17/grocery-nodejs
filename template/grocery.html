@@ -397,35 +397,34 @@
                               <button class="nav-link active" id="img-1-tab" data-bs-toggle="tab"
                                  data-bs-target="#img-1" type="button" role="tab" aria-controls="img-1"
                                  aria-selected="true">
-                                 <img src="assets/imgs/product/details/details-07.png" alt="product-sm-thumb">
+                                 <img src={%SMALL_IMAGE_1%} alt="product-sm-thumb">
                               </button>
                               <button class="nav-link" id="img-2-tab" data-bs-toggle="tab" data-bs-target="#img-2"
                                  type="button" role="tab" aria-controls="img-3" aria-selected="false">
-                                 <img src="assets/imgs/product/details/details-08.png" alt="product-sm-thumb">
+                                 <img src={%SMALL_IMAGE_2%} alt="product-sm-thumb">
                               </button>
                               <button class="nav-link" id="img-3-tab" data-bs-toggle="tab" data-bs-target="#img-3"
                                  type="button" role="tab" aria-controls="img-3" aria-selected="false">
-                                 <img src="assets/imgs/product/details/details-09.png" alt="product-sm-thumb">
+                                 <img src={%SMALL_IMAGE_3%} alt="product-sm-thumb">
                               </button>
                            </div>
                         </nav>
                      </div>
-                     <div class="product__details-thumb-tab-content">
+                     <div class="product__details-thumb-tab-content w-100">
                         <div class="tab-content" id="productthumbcontent">
-                           <div class="tab-pane fade show active" id="img-1" role="tabpanel"
-                              aria-labelledby="img-1-tab">
+                           <div class="tab-pane fade show active" id="img-1" role="tabpanel" aria-labelledby="img-1-tab">
                               <div class="product__details-thumb-big w-img">
-                                 <img src="assets/imgs/product/details/details-07.png" alt="">
+                                 <img src={%SMALL_IMAGE_1%} alt="">
                               </div>
                            </div>
                            <div class="tab-pane fade" id="img-2" role="tabpanel" aria-labelledby="img-2-tab">
                               <div class="product__details-thumb-big w-img">
-                                 <img src="assets/imgs/product/details/details-08.png" alt="">
+                                 <img src={%SMALL_IMAGE_2%} alt="">
                               </div>
                            </div>
                            <div class="tab-pane fade" id="img-3" role="tabpanel" aria-labelledby="img-3-tab">
                               <div class="product__details-thumb-big w-img">
-                                 <img src="assets/imgs/product/details/details-09.png" alt="">
+                                 <img src={%SMALL_IMAGE_3%} alt="">
                               </div>
                            </div>
                         </div>
@@ -444,16 +443,15 @@
                            <a href="#"><i class="fa-regular fa-star"></i></a>
                         </div>
                         <div class="product__details-review-count">
-                           <a href="#">10 Reviews</a>
+                           <a href="#">{%NO_OF_REVIEWS%} Review(s)</a>
                         </div>
                      </div>
-                     <h3 class="product__details-title">Broccoli Organic</h3>
+                     <h3 class="product__details-title">{%PRODUCT_NAME%}</h3>
                      <div class="product__details-price">
                         <span class="old-price">$30.35</span>
-                        <span class="new-price">$19.25</span>
+                        <span class="new-price">${%PRODUCT_PRICE%}</span>
                      </div>
-                     <p>Priyoshop has brought to you the Hijab 3 Pieces Combo Pack PS23. It is a completely modern
-                        design and you feel comfortable to put on this hijab. Buy it at the best price.</p>
+                     <p>{%PRODUCT_DESC%}</p>
 
                      <div class="product__details-action mb-35">
                         <div class="product__quantity">
@@ -482,14 +480,13 @@
                      <div class="product__details-meta mb-20">
                         <div class="sku">
                            <span>SKU:</span>
-                           <a href="#">BO1D0MX8SJ</a>
+                           <a href="#">{%PRODUCT_SKU%}</a>
                         </div>
                         <div class="categories">
-                           <span>Categories:</span> <a href="#">Milk,</a> <a href="#">Cream,</a> <a
-                              href="#">Fermented.</a>
+                           <span>Categories:</span> <a href="#">{%PRODUCT_CAT%}</a>
                         </div>
                         <div class="tag">
-                           <span>Tags:</span> <a href="#"> Cheese,</a> <a href="#">Custard,</a> <a href="#">Frozen</a>
+                           <span>Tags:</span> <a href="#">{%PRODUCT_TAG%}</a>
                         </div>
                      </div>
                      <div class="product__details-share">
@@ -517,7 +514,7 @@
                                  aria-controls="nav-additional" aria-selected="false">Additional Information </button>
                               <button class="nav-link" id="nav-review-tab" data-bs-toggle="tab"
                                  data-bs-target="#nav-review" type="button" role="tab" aria-controls="nav-review"
-                                 aria-selected="false">Reviews (3)</button>
+                                 aria-selected="false">Reviews ({%NO_OF_REVIEWS%})</button>
                            </div>
                         </nav>
                      </div>
@@ -528,23 +525,7 @@
                            <div class="tab-pane fade show active" id="nav-description" role="tabpanel"
                               aria-labelledby="nav-description-tab">
                               <div class="product__details-des">
-                                 <p>In marketing a product is an object or system made available for consumer use it is
-                                    anything that can be offered to a market to
-                                    the desire or need of a retailing, products are often referred to as merchandise,
-                                    and in manufacturing, products are bought as
-                                    materials and then sold as finished goods. A service regarded to as a type of
-                                    product. Commodities are usually raw materials
-                                    metals and agricultural products, but a commodity can also be anything wide the open
-                                    market. In project management,
-                                    the formal definition of the project deliverables</p>
-                                 <p>A product can be classified as tangible or intangible. A tangible product is a
-                                    physical object that can be perceived by touch
-                                    building, vehicle, gadget, An intangible product is a product that can only be
-                                    perceived indirectly such as an insurance policy.
-                                    can be broadly classified under intangible be durable or non durable. A product line
-                                    is "a group of products that are closely
-                                    either because they function in a similar manner, are sold to the same
-                                    customergroups.</p>
+                                 <p>{%PRODUCT_DESC%}</p>
                               </div>
                            </div>
                            <div class="tab-pane fade" id="nav-additional" role="tabpanel"
@@ -553,11 +534,11 @@
                                  <ul>
                                     <li>
                                        <h4>Weight</h4>
-                                       <span>2 lbs</span>
+                                       <span>{%PRODUCT_WEIGHT%}</span>
                                     </li>
                                     <li>
                                        <h4>Dimensions</h4>
-                                       <span>12 × 16 × 19 in</span>
+                                       <span>{%PRODUCT_DIMENSION%}</span>
                                     </li>
                                     <li>
                                        <h4>Product</h4>
@@ -577,7 +558,7 @@
                                     </li>
                                     <li>
                                        <h4>Shipping</h4>
-                                       <span>Standard shipping: $5,95</span>
+                                       <span>{%PRODUCT_SHIPPING%}</span>
                                     </li>
                                     <li>
                                        <h4>Care Info</h4>
@@ -585,108 +566,17 @@
                                     </li>
                                     <li>
                                        <h4>Brand</h4>
-                                       <span>Kazen</span>
+                                       <span>{%PRODUCT_BRAND%}</span>
                                     </li>
                                  </ul>
                               </div>
                            </div>
                            <div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-review-tab">
                               <div class="product__details-review">
-                                 <h3 class="comments-title">03 reviews for “Wide Cotton Tunic extreme hammer”</h3>
+                                 <h3 class="comments-title">{%NO_OF_REVIEWS%} review(s) for “{%PRODUCT_NAME%}”</h3>
                                  <div class="latest-comments mb-50">
                                     <ul>
-                                       <li>
-                                          <div class="comments-box d-flex">
-                                             <div class="comments-avatar mr-10">
-                                                <img src="assets/imgs/user/user-01.png" alt="">
-                                             </div>
-                                             <div class="comments-text">
-                                                <div
-                                                   class="comments-top d-sm-flex align-items-start justify-content-between mb-5">
-                                                   <div class="avatar-name">
-                                                      <h5>Siarhei Dzenisenka</h5>
-                                                      <div class="comments-date">
-                                                         <span>March 27, 2018 9:51 am</span>
-                                                      </div>
-                                                   </div>
-                                                   <div class="user-rating">
-                                                      <ul>
-                                                         <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                         <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                         <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                         <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                         <li><a href="#"><i class="fal fa-star"></i></a></li>
-                                                      </ul>
-                                                   </div>
-                                                </div>
-                                                <p>This is cardigan is a comfortable warm classic piece. Great to layer
-                                                   with a light top and you can dress up or down given the jewel
-                                                   buttons. I’m 5’8” 128lbs a 34A and the Small fit fine.</p>
-                                             </div>
-                                          </div>
-                                       </li>
-                                       <li>
-                                          <div class="comments-box d-flex">
-                                             <div class="comments-avatar mr-10">
-                                                <img src="assets/imgs/user/user-02.png" alt="">
-                                             </div>
-                                             <div class="comments-text">
-                                                <div
-                                                   class="comments-top d-sm-flex align-items-start justify-content-between mb-5">
-                                                   <div class="avatar-name">
-                                                      <h5>Siarhei Dzenisenka</h5>
-                                                      <div class="comments-date">
-                                                         <span>March 27, 2018 9:51 am</span>
-                                                      </div>
-                                                   </div>
-                                                   <div class="user-rating">
-                                                      <ul>
-                                                         <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                         <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                         <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                         <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                         <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                      </ul>
-                                                   </div>
-                                                </div>
-                                                <p>I bought this beautiful pale gray cashmere sweater for my
-                                                   daughter-in-law for her birthday. She loves it and can wear it with
-                                                   almost anything!</p>
-                                             </div>
-                                          </div>
-                                       </li>
-                                       <li>
-                                          <div class="comments-box d-flex">
-                                             <div class="comments-avatar mr-10">
-                                                <img src="assets/imgs/user/user-03.png" alt="">
-                                             </div>
-                                             <div class="comments-text">
-                                                <div
-                                                   class="comments-top d-sm-flex align-items-start justify-content-between mb-5">
-                                                   <div class="avatar-name">
-                                                      <h5>Siarhei Dzenisenka</h5>
-                                                      <div class="comments-date">
-                                                         <span>March 27, 2018 9:51 am</span>
-                                                      </div>
-                                                   </div>
-                                                   <div class="user-rating">
-                                                      <ul>
-                                                         <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                         <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                         <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                         <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                         <li><a href="#"><i class="fal fa-star"></i></a></li>
-                                                      </ul>
-                                                   </div>
-                                                </div>
-                                                <p>Amazing club. Sure the secruity is very tight but actually made me
-                                                   and my friends feel secure. You just have to go along with the
-                                                   secruity. Bar staff and cloakroom staff really friendly. Coming out
-                                                   at 7am into bright London sunshine in Smithfields is an amazing
-                                                   London experience</p>
-                                             </div>
-                                          </div>
-                                       </li>
+                                       {%PRODUCT_REVIEW%}
                                     </ul>
                                  </div>
                                  <div class="product__details-comment section-space-medium-bottom">

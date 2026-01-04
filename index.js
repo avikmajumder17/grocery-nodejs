@@ -1,6 +1,7 @@
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
+const url = require("url");
 
 
 //api
@@ -12,21 +13,25 @@ const homeDataObj = JSON.parse(homeData);
 //templates
 
 const tempHomePage = fs.readFileSync(`${__dirname}/template/index.html`, "utf-8");
+const tempProductDetails = fs.readFileSync(`${__dirname}/template/grocery.html`, "utf-8");
 const tempPageNotFound = fs.readFileSync(`${__dirname}/template/pagenotfound.html`, "utf-8");
 
 
 //template components
 
+const tempHeaderComponent = fs.readFileSync(`${__dirname}/template/components/header/header.html`, "utf-8");
 const homeBannerComponent = fs.readFileSync(`${__dirname}/template/components/homePageComponents/s1Banners/homeBanner.html`, "utf-8");
 const homeCategoryComponent = fs.readFileSync(`${__dirname}/template/components/homePageComponents/s2Category/category.html`, "utf-8");
 const productCard = fs.readFileSync(`${__dirname}/template/components/homePageComponents/s3Products/product-card.html`, "utf-8");
 const featuredProductCard = fs.readFileSync(`${__dirname}/template/components/homePageComponents/featuredProducts/featured-products.html`, "utf-8");
 const clientFeedback = fs.readFileSync(`${__dirname}/template/components/homePageComponents/clientFeedback/client-feedback.html`, "utf-8");
+const tempProductReview = fs.readFileSync(`${__dirname}/template/components/productDetails/reviews/product-reviews.html`, "utf-8");
+const tempFooterComponent = fs.readFileSync(`${__dirname}/template/components/footer/footer.html`, "utf-8");
 
 
 //fetching
 
-//home page
+//home page//
 
 //banner
 
@@ -35,7 +40,7 @@ const replaceHomeBanner = (homeBannerTemp, homeBannerDetail) => {
     output = output.replace(/{%HOME_BANNER_TITLE%}/g, homeBannerDetail.banner_title);
     output = output.replace(/{%HOME_BANNER_BIG_IMAGE%}/g, homeBannerDetail.banner_big_image);
     output = output.replace(/{%HOME_BANNER_DISCOUNT_IMAGE%}/g, homeBannerDetail.banner_discount_image);
-    output = output.replace(/{%ID%}/g, homeBannerDetail.id);   
+    output = output.replace(/{%ID%}/g, homeBannerDetail.id);
 
     return output;
 };
@@ -63,6 +68,21 @@ const replaceHomeProduct = (homeProductTemp, productDetail) => {
     output = output.replace(/{%PRODUCT_NAME%}/g, productDetail.product_name);
     output = output.replace(/{%PRODUCT_PRICE%}/g, productDetail.product_price);
     output = output.replace(/{%PRODUCT_RATING%}/g, productDetail.rating);
+    output = output.replace(/{%PRODUCT_DESC%}/g, productDetail.product_desc);
+    output = output.replace(/{%PRODUCT_SKU%}/g, productDetail.product_info.sku);
+    output = output.replace(/{%PRODUCT_CAT%}/g, productDetail.product_info.categories);
+    output = output.replace(/{%PRODUCT_TAG%}/g, productDetail.product_info.tags);
+    output = output.replace(/{%PRODUCT_WEIGHT%}/g, productDetail.product_info.weight);
+    output = output.replace(/{%PRODUCT_DIMENSION%}/g, productDetail.product_info.dimensions);
+    output = output.replace(/{%PRODUCT_SHIPPING%}/g, productDetail.product_info.shipping);
+    output = output.replace(/{%PRODUCT_BRAND%}/g, productDetail.product_info.brand);
+    output = output.replace(/{%PRODUCT_REVIEW_NAME%}/g, productDetail.reviews.user);
+    output = output.replace(/{%PRODUCT_DATE%}/g, productDetail.reviews.date);
+    output = output.replace(/{%PRODUCT_REVIEW_COMMENT%}/g, productDetail.reviews.comment);
+    output = output.replace(/{%SMALL_IMAGE_1%}/g, productDetail.small_images[0]);
+    output = output.replace(/{%SMALL_IMAGE_2%}/g, productDetail.small_images[1]);
+    output = output.replace(/{%SMALL_IMAGE_3%}/g, productDetail.small_images[2]);
+    output = output.replace(/{%ID%}/g, productDetail.id);
 
     return output;
 };
@@ -80,6 +100,7 @@ const replaceHomeFeaturedProduct = (featuredProductTemp, productDetail) => {
     output = output.replace(/{%PRODUCT_NAME%}/g, productDetail.product_name);
     output = output.replace(/{%PRODUCT_PRICE%}/g, productDetail.product_price);
     output = output.replace(/{%PRODUCT_RATING%}/g, productDetail.rating);
+    output = output.replace(/{%ID%}/g, productDetail.id);
 
     return output;
 };
@@ -91,6 +112,20 @@ const replaceHomeClientFeedback = (clientFeedbackTemp, feedbackDetail) => {
     output = output.replace(/{%CLIENT_PROFESSION%}/g, feedbackDetail.client_profession);
     output = output.replace(/{%CLIENT_DESCRIPTION%}/g, feedbackDetail.feedback);
     output = output.replace(/{%CLIENT_RATING%}/g, feedbackDetail.rating);
+
+    return output;
+};
+
+
+//product detail//
+
+//product detail review
+
+const replaceReviews = (productReviewTemp, productReviewDetail) => {
+    let output = productReviewTemp.replace(/{%PRODUCT_REVIEW_NAME%}/g, productReviewDetail.user);
+    output = output.replace(/{%PRODUCT_REVIEW_NAME%}/g, productReviewDetail.user);
+    output = output.replace(/{%PRODUCT_DATE%}/g, productReviewDetail.date);
+    output = output.replace(/{%PRODUCT_REVIEW_COMMENT%}/g, productReviewDetail.comment);
 
     return output;
 };
@@ -138,11 +173,9 @@ const mimeTypes = ({
 
 
 const server = http.createServer((req, res) => {
-    const pathName = req.url;
+    const { query, pathname } = url.parse(req.url, true);
 
-    console.log(pathName);
-
-    if (pathName === "/" || pathName === "/home") {
+    if (pathname === "/" || pathname === "/home") {        
         res.writeHead(200, { "Content-type": "text/html" });
 
         const homeBannerHtml = homeDataObj.homeBanners.map(homeBanner => replaceHomeBanner(homeBannerComponent, homeBanner)).join("");
@@ -153,38 +186,52 @@ const server = http.createServer((req, res) => {
         const homeClientFeedbackHtml = homeDataObj.testimonials.map(testimonial => replaceHomeClientFeedback(clientFeedback, testimonial)).join("");
 
         const homePageHtml = tempHomePage
+            .replace(/{%HEADER%}/, tempHeaderComponent)
             .replace(/{%HOME_BANNERS%}/, homeBannerHtml)
             .replace(/{%CATEGORY%}/, homeCategoryHtml)
             .replace(/{%PRODUCT_CARDS%}/, homeProductHtml)
             .replace(/{%BEST_PRODUCT_CARDS%}/, homeBestSellerProductHtml)
             .replace(/{%FEATURED_PRODUCT_CARDS%}/, homeFeaturedProductHtml)
-            .replace(/{%CLIENT_FEEDBACK%}/, homeClientFeedbackHtml);
+            .replace(/{%CLIENT_FEEDBACK%}/, homeClientFeedbackHtml)
+            .replace(/{%FOOTER%}/, tempFooterComponent);
         
         res.end(homePageHtml);
-    } else if (pathName === "/contact") {
+    } else if (pathname === "/contact") {
         res.end("Welcome to the contact us page");
-    } else if (pathName === "/about") {
+    } else if (pathname === "/about") {
         res.end("Welcome to the about us page");
-    } else if (pathName === "/blog") {
+    } else if (pathname === "/blog") {
         res.end("Welcome to the blog page");
-    } else if (pathName === "/blog/:blog-details") {
+    } else if (pathname === "/blog/:blog-details") {        
         res.end("Welcome to the blog details page");
-    } else if (pathName === "/faq") {
+    } else if (pathname === "/faq") {
         res.end("Welcome to the faq page");
-    } else if (pathName === "/shop") {
+    } else if (pathname === "/shop") {
         res.end("Welcome to the shop page");
-    } else if (pathName === "/grocery/:grocery-details") {
-        res.end("Welcome to the grocery details page");
-    } else if (pathName === "/wishlist") {
+    } else if (pathname === "/grocery") {
+        res.writeHead(200, { "Content-type": "text/html" });
+
+        const groceryProduct = homeDataObj.products.find(product => product.id === Number(query.id));
+        const groceryProductDetail = replaceHomeProduct(tempProductDetails, groceryProduct);
+
+        const groceryProductReviewHtml = homeDataObj.products.find(product => product.id === Number(query.id))?.reviews?.map(review => replaceReviews(tempProductReview, review)).join("");
+        const noOfReviews = homeDataObj.products.find(product => product.id === Number(query.id))?.reviews.length;
+
+        const groceryDetailHtml = groceryProductDetail
+            .replace(/{%PRODUCT_REVIEW%}/, groceryProductReviewHtml)
+            .replace(/{%NO_OF_REVIEWS%}/g, noOfReviews);
+        
+        res.end(groceryDetailHtml);
+    } else if (pathname === "/wishlist") {
         res.end("Welcome to the wishlist page");
-    } else if (pathName === "/cart") {
+    } else if (pathname === "/cart") {
         res.end("Welcome to the cart page");
-    } else if (pathName === "/checkout") {
+    } else if (pathname === "/checkout") {
         res.end("Welcome to the checkout page");
-    } else if (pathName === "/coming-soon") {
+    } else if (pathname === "/coming-soon") {
         res.end("Welcome to the coming soon page");
-    } else if (pathName.startsWith("/assets/imgs/")) {
-        const imageFilePath = path.join(__dirname, "template", pathName);
+    } else if (pathname.startsWith("/assets/imgs/")) {
+        const imageFilePath = path.join(__dirname, "template", pathname);
         console.log(imageFilePath)
         const ext = path.extname(imageFilePath).slice(1);
         const mimeType = mimeTypes[ext] || "application/octet-stream";
@@ -198,73 +245,73 @@ const server = http.createServer((req, res) => {
                 res.end(data);
             }
         });
-    } else if (pathName === "/assets/css/bootstrap.min.css") {
+    } else if (pathname === "/assets/css/bootstrap.min.css") {
         res.writeHead(200, {"Content-type": "text/css"});
         res.end(tempBootstrap);
-    } else if (pathName === "/assets/css/meanmenu.min.css") {
+    } else if (pathname === "/assets/css/meanmenu.min.css") {
         res.writeHead(200, {"Content-type": "text/css"});
         res.end(tempMeanMenu);
-    } else if (pathName === "/assets/css/animate.css") {
+    } else if (pathname === "/assets/css/animate.css") {
         res.writeHead(200, {"Content-type": "text/css"});
         res.end(tempAnimate);
-    } else if (pathName === "/assets/css/swiper.min.css") {
+    } else if (pathname === "/assets/css/swiper.min.css") {
         res.writeHead(200, {"Content-type": "text/css"});
         res.end(tempSwiper);
-    } else if (pathName === "/assets/css/slick.css") {
+    } else if (pathname === "/assets/css/slick.css") {
         res.writeHead(200, {"Content-type": "text/css"});
         res.end(tempSlick);
-    } else if (pathName === "/assets/css/magnific-popup.css") {
+    } else if (pathname === "/assets/css/magnific-popup.css") {
         res.writeHead(200, {"Content-type": "text/css"});
         res.end(tempMagnific);
-    } else if (pathName === "/assets/css/fontawesome-pro.css") {
+    } else if (pathname === "/assets/css/fontawesome-pro.css") {
         res.writeHead(200, {"Content-type": "text/css"});
         res.end(tempFontawesome);
-    } else if (pathName === "/assets/css/spacing.css") {
+    } else if (pathname === "/assets/css/spacing.css") {
         res.writeHead(200, {"Content-type": "text/css"});
         res.end(tempSpacing);
-    } else if (pathName === "/assets/css/main.css") {
+    } else if (pathname === "/assets/css/main.css") {
         res.writeHead(200, {"Content-type": "text/css"});
         res.end(tempMain);
-    } else if (pathName === "/assets/css/grocery.css") {
+    } else if (pathname === "/assets/css/grocery.css") {
         res.writeHead(200, {"Content-type": "text/css"});
         res.end(tempGrocery);
-    } else if (pathName === "/assets/js/jquery-3.6.0.min.js") {
+    } else if (pathname === "/assets/js/jquery-3.6.0.min.js") {
         res.writeHead(200, {"Content-type": "application/javascript"});
         res.end(tempJqueryJs);
-    } else if (pathName === "/assets/js/waypoints.min.js") {
+    } else if (pathname === "/assets/js/waypoints.min.js") {
         res.writeHead(200, {"Content-type": "application/javascript"});
         res.end(tempWaypointsJs);
-    } else if (pathName === "/assets/js/bootstrap.bundle.min.js") {
+    } else if (pathname === "/assets/js/bootstrap.bundle.min.js") {
         res.writeHead(200, {"Content-type": "application/javascript"});
         res.end(tempBootstrapJs);
-    } else if (pathName === "/assets/js/meanmenu.min.js") {
+    } else if (pathname === "/assets/js/meanmenu.min.js") {
         res.writeHead(200, {"Content-type": "application/javascript"});
         res.end(tempMeanMenuJs);
-    } else if (pathName === "/assets/js/swiper.min.js") {
+    } else if (pathname === "/assets/js/swiper.min.js") {
         res.writeHead(200, {"Content-type": "application/javascript"});
         res.end(tempSwiperJs);
-    } else if (pathName === "/assets/js/slick.min.js") {
+    } else if (pathname === "/assets/js/slick.min.js") {
         res.writeHead(200, {"Content-type": "application/javascript"});
         res.end(tempSlickJs);
-    } else if (pathName === "/assets/js/magnific-popup.min.js") {
+    } else if (pathname === "/assets/js/magnific-popup.min.js") {
         res.writeHead(200, {"Content-type": "application/javascript"});
         res.end(tempMagnificPopupJs);
-    } else if (pathName === "/assets/js/counterup.js") {
+    } else if (pathname === "/assets/js/counterup.js") {
         res.writeHead(200, {"Content-type": "application/javascript"});
         res.end(tempCounterupJs);
-    } else if (pathName === "/assets/js/wow.js") {
+    } else if (pathname === "/assets/js/wow.js") {
         res.writeHead(200, {"Content-type": "application/javascript"});
         res.end(tempWowJs);
-    } else if (pathName === "/assets/js/ajax-form.js") {
+    } else if (pathname === "/assets/js/ajax-form.js") {
         res.writeHead(200, {"Content-type": "application/javascript"});
         res.end(tempAjaxFormJs);
-    } else if (pathName === "/assets/js/beforeafter.jquery-1.0.0.min.js") {
+    } else if (pathname === "/assets/js/beforeafter.jquery-1.0.0.min.js") {
         res.writeHead(200, {"Content-type": "application/javascript"});
         res.end(tempBeforeafterJs);
-    } else if (pathName === "/assets/js/main.js") {
+    } else if (pathname === "/assets/js/main.js") {
         res.writeHead(200, {"Content-type": "application/javascript"});
         res.end(tempMainJs);
-    } else if (pathName === "/api") {
+    } else if (pathname === "/api") {
         res.writeHead(200, {"Content-type": "application/json"});
         res.end(homeData);
     } else {

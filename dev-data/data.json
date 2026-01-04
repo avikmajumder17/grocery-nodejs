@@ -62,92 +62,267 @@
     ],
     "products": [
         {
-            "id": 1,
+            "id": 0,
             "products_image": "assets/imgs/grocery/product/product1.png",
+            "small_images": [
+                "assets/imgs/grocery/product/product1.png",
+                "assets/imgs/product/details/details-08.png",
+                "assets/imgs/product/details/details-09.png"
+            ],
             "product_name": "Organic Avocado",
             "product_price": 150,
             "best_seller": true,
             "featured_product": true,
             "rating": 4,
             "discount": false,
-            "discount_percentage": 0
+            "discount_percentage": 0,
+            "product_desc": "Organic Avocado is a fresh and nutrient-rich product grown using organic farming practices.",
+            "product_info": {
+                "sku": "BO1D0MX8SJ",
+                "categories": [
+                    "Milk",
+                    "Cream",
+                    "Fermented"
+                ],
+                "tags": [
+                    "Cheese",
+                    "Custard",
+                    "Frozen"
+                ],
+                "weight": "2 lbs",
+                "dimensions": "12 × 16 × 19 in",
+                "brand": "Kazen",
+                "shipping": "Standard shipping: $5.95"
+            },
+            "reviews": [
+                {
+                    "review_id": 1,
+                    "user": "Amit",
+                    "rating": 5,
+                    "comment": "Very fresh and creamy.",
+                    "date": "2025-01-10"
+                }
+            ]
         },
         {
-            "id": 2,
+            "id": 1,
             "products_image": "assets/imgs/grocery/product/product2.png",
+            "small_images": [
+                "assets/imgs/grocery/product/product2.png",
+                "assets/imgs/product/details/details-08.png",
+                "assets/imgs/product/details/details-09.png"
+            ],
             "product_name": "Cheddar Fries",
             "product_price": 190,
             "best_seller": false,
             "featured_product": true,
             "rating": 3,
             "discount": false,
-            "discount_percentage": 0
+            "discount_percentage": 0,
+            "product_desc": "Cheddar Fries are crispy frozen snacks with rich cheesy flavor.",
+            "product_info": {
+                "sku": "BO1D0MX8SJ",
+                "categories": [
+                    "Cream",
+                    "Fermented"
+                ],
+                "tags": [
+                    "Cheese",
+                    "Frozen"
+                ],
+                "weight": "2 lbs",
+                "dimensions": "12 × 16 × 19 in",
+                "brand": "Kazen",
+                "shipping": "Standard shipping: $5.95"
+            },
+            "reviews": []
         },
         {
-            "id": 3,
+            "id": 2,
             "products_image": "assets/imgs/grocery/product/product3.png",
+            "small_images": [
+                "assets/imgs/grocery/product/product3.png",
+                "assets/imgs/product/details/details-08.png",
+                "assets/imgs/product/details/details-09.png"
+            ],
             "product_name": "Broccoli Organic",
             "product_price": 300,
             "best_seller": true,
             "featured_product": false,
             "rating": 4,
             "discount": false,
-            "discount_percentage": 0
+            "discount_percentage": 0,
+            "product_desc": "Organic broccoli grown naturally without chemicals.",
+            "product_info": {
+                "sku": "BO1D0MX8SJ",
+                "categories": [
+                    "Fermented"
+                ],
+                "tags": [
+                    "Frozen"
+                ],
+                "weight": "2 lbs",
+                "dimensions": "12 × 16 × 19 in",
+                "brand": "Kazen",
+                "shipping": "Standard shipping: $5.95"
+            },
+            "reviews": []
         },
         {
-            "id": 4,
+            "id": 3,
             "products_image": "assets/imgs/grocery/product/product4.png",
+            "small_images": [
+                "assets/imgs/grocery/product/product4.png",
+                "assets/imgs/product/details/details-08.png",
+                "assets/imgs/product/details/details-09.png"
+            ],
             "product_name": "Broccoli Farms",
             "product_price": 129,
             "best_seller": false,
             "featured_product": false,
             "rating": 5,
             "discount": false,
-            "discount_percentage": 0
+            "discount_percentage": 0,
+            "product_desc": "Fresh broccoli sourced directly from local farms.",
+            "product_info": {
+                "sku": "BO1D0MX8SJ",
+                "categories": [
+                    "Fermented"
+                ],
+                "tags": [
+                    "Frozen"
+                ],
+                "weight": "2 lbs",
+                "dimensions": "12 × 16 × 19 in",
+                "brand": "Kazen",
+                "shipping": "Standard shipping: $5.95"
+            },
+            "reviews": []
         },
         {
-            "id": 5,
+            "id": 4,
             "products_image": "assets/imgs/grocery/product/product5.png",
+            "small_images": [
+                "assets/imgs/grocery/product/product5.png",
+                "assets/imgs/product/details/details-08.png",
+                "assets/imgs/product/details/details-09.png"
+            ],
             "product_name": "Fresh Orange",
             "product_price": 150,
             "best_seller": true,
             "featured_product": false,
             "rating": 3,
             "discount": true,
-            "discount_percentage": 10
+            "discount_percentage": 10,
+            "product_desc": "Juicy fresh oranges packed with vitamin C.",
+            "product_info": {
+                "sku": "BO1D0MX8SJ",
+                "categories": [
+                    "Milk"
+                ],
+                "tags": [
+                    "Custard"
+                ],
+                "weight": "2 lbs",
+                "dimensions": "12 × 16 × 19 in",
+                "brand": "Kazen",
+                "shipping": "Standard shipping: $5.95"
+            },
+            "reviews": []
         },
         {
-            "id": 6,
+            "id": 5,
             "products_image": "assets/imgs/grocery/product/product6.png",
+            "small_images": [
+                "assets/imgs/grocery/product/product6.png",
+                "assets/imgs/product/details/details-08.png",
+                "assets/imgs/product/details/details-09.png"
+            ],
             "product_name": "Organic Avocado",
             "product_price": 150,
             "best_seller": false,
             "featured_product": false,
             "rating": 4,
             "discount": false,
-            "discount_percentage": 0
+            "discount_percentage": 0,
+            "product_desc": "Eco-friendly grown organic avocado for daily nutrition.",
+            "product_info": {
+                "sku": "BO1D0MX8SJ",
+                "categories": [
+                    "Milk",
+                    "Cream"
+                ],
+                "tags": [
+                    "Frozen"
+                ],
+                "weight": "2 lbs",
+                "dimensions": "12 × 16 × 19 in",
+                "brand": "Kazen",
+                "shipping": "Standard shipping: $5.95"
+            },
+            "reviews": []
         },
         {
-            "id": 7,
+            "id": 6,
             "products_image": "assets/imgs/grocery/product/product7.png",
+            "small_images": [
+                "assets/imgs/grocery/product/product7.png",
+                "assets/imgs/product/details/details-08.png",
+                "assets/imgs/product/details/details-09.png"
+            ],
             "product_name": "Fresh Orange",
             "product_price": 80,
             "best_seller": false,
             "featured_product": true,
             "rating": 4,
             "discount": true,
-            "discount_percentage": 20
+            "discount_percentage": 20,
+            "product_desc": "Affordable fresh oranges for everyday use.",
+            "product_info": {
+                "sku": "BO1D0MX8SJ",
+                "categories": [
+                    "Milk"
+                ],
+                "tags": [
+                    "Custard"
+                ],
+                "weight": "2 lbs",
+                "dimensions": "12 × 16 × 19 in",
+                "brand": "Kazen",
+                "shipping": "Standard shipping: $5.95"
+            },
+            "reviews": []
         },
         {
-            "id": 8,
+            "id": 7,
             "products_image": "assets/imgs/grocery/product/product8.png",
+            "small_images": [
+                "assets/imgs/grocery/product/product8.png",
+                "assets/imgs/product/details/details-08.png",
+                "assets/imgs/product/details/details-09.png"
+            ],
             "product_name": "Red Apple",
             "product_price": 49,
             "best_seller": true,
             "featured_product": false,
             "rating": 5,
             "discount": false,
-            "discount_percentage": 0
+            "discount_percentage": 0,
+            "product_desc": "Crisp and juicy red apples with natural sweetness.",
+            "product_info": {
+                "sku": "BO1D0MX8SJ",
+                "categories": [
+                    "Cream"
+                ],
+                "tags": [
+                    "Frozen"
+                ],
+                "weight": "2 lbs",
+                "dimensions": "12 × 16 × 19 in",
+                "brand": "Kazen",
+                "shipping": "Standard shipping: $5.95"
+            },
+            "reviews": []
         }
     ],
     "testimonials": [
