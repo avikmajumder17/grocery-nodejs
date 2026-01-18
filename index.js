@@ -232,7 +232,6 @@ const server = http.createServer((req, res) => {
         res.end("Welcome to the coming soon page");
     } else if (pathname.startsWith("/assets/imgs/")) {
         const imageFilePath = path.join(__dirname, "template", pathname);
-        console.log(imageFilePath)
         const ext = path.extname(imageFilePath).slice(1);
         const mimeType = mimeTypes[ext] || "application/octet-stream";
         
